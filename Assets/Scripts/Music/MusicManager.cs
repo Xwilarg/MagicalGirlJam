@@ -20,6 +20,8 @@ namespace MagicalGirlJam.Music
         private float _timer;
         private int _dataIndex;
 
+        private const float _speed = 1000f;
+
         private void Awake()
         {
             _data = new()
@@ -39,8 +41,11 @@ namespace MagicalGirlJam.Music
             for (; _dataIndex < _data.Notes.Length; _dataIndex++)
             {
                 var note = _data.Notes[_dataIndex];
-                var go = Instantiate(_notePrefab, _container.transform.position + Vector3.right * note.Time * 10f, Quaternion.identity);
+                var go = Instantiate(_notePrefab, _container.transform.position + Vector3.right * (note.Time / 100f) * _speed, Quaternion.identity);
                 go.transform.parent = _container.transform;
+                var noteInfo = go.GetComponent<NoteInfo>();
+                noteInfo.Speed = _speed;
+                noteInfo.Data = note;
             }
         }
 

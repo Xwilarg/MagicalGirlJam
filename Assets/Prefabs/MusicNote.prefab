@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 841279541124037175}
   - component: {fileID: 841279541124037169}
   - component: {fileID: 841279541124037168}
+  - component: {fileID: 3260735792110933270}
   m_Layer: 5
   m_Name: MusicNote
   m_TagString: Untagged
@@ -77,6 +78,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3260735792110933270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 841279541124037174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16fd2568adec9004bbf0a3f2cfbd8a9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &841279541768822057
 GameObject:
   m_ObjectHideFlags: 0
