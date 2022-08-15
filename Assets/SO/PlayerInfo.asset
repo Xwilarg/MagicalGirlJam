@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: PlayerInfo
   m_EditorClassIdentifier: 
   Speed: 200
+  DashForce: 10
+  DashDuration: 0.5
+  DashReloadTime: 0.5
