@@ -16,3 +16,5 @@ MonoBehaviour:
   DashForce: 10
   DashDuration: 0.5
   DashReloadTime: 0.5
+  JumpForce: 3
+  JumpRaycastHeight: 1.01
