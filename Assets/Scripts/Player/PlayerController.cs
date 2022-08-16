@@ -34,6 +34,9 @@ namespace MagicalGirlJam.Player
             _rb.velocity = new Vector2(_mov * Time.deltaTime * _info.Speed, _rb.velocity.y);
         }
 
+        private float ForwardDirection
+            => (_mov < 0f || _mov == 0f && _rb.velocity.x < 0f) ? -1f : 1f;
+
         public void OnMovement(InputAction.CallbackContext value)
         {
             _mov = value.ReadValue<Vector2>().x;
@@ -43,8 +46,7 @@ namespace MagicalGirlJam.Player
         {
             if (value.performed && _hasControlOverPlayer && _canUseDash)
             {
-                float dashForce = _info.DashForce * ((_mov < 0f || _mov == 0f && _rb.velocity.x < 0f) ? -1f : 1f);
-                _rb.AddForce(Vector2.right * dashForce, ForceMode2D.Impulse);
+                _rb.AddForce(Vector2.right * _info.DashForce * ForwardDirection, ForceMode2D.Impulse);
                 StartCoroutine(WaitAndReloadDash());
             }
         }
@@ -58,6 +60,16 @@ namespace MagicalGirlJam.Player
                 {
                     _rb.AddForce(Vector2.up * _info.JumpForce, ForceMode2D.Impulse);
                 }
+            }
+        }
+
+        public void OnAttack(InputAction.CallbackContext value)
+        {
+            if (value.performed && _hasControlOverPlayer)
+            {
+                var go = Instantiate(_info.BulletPrefab, transform.position, Quaternion.identity);
+                go.GetComponent<Rigidbody2D>().AddForce(Vector2.right * _info.BulletForce * ForwardDirection, ForceMode2D.Impulse);
+                Destroy(go, 10f);
             }
         }
 

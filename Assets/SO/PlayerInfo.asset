@@ -18,3 +18,5 @@ MonoBehaviour:
   DashReloadTime: 0.5
   JumpForce: 3
   JumpRaycastHeight: 1.01
+  BulletPrefab: {fileID: 5637175710419303692, guid: f21ff0078fd52394bb810a189b2a5bc7, type: 3}
+  BulletForce: 10

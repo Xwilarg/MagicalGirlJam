@@ -12,7 +12,7 @@ namespace MagicalGirlJam.Enemy
             _health -= amount;
             if (_health < 0)
             {
-                _health = 0;
+                Destroy(gameObject);
             }
         }
     }

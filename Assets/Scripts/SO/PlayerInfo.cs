@@ -14,5 +14,8 @@ namespace MagicalGirlJam.SO
         public float JumpForce;
 
         public float JumpRaycastHeight;
+
+        public GameObject BulletPrefab;
+        public float BulletForce;
     }
 }
