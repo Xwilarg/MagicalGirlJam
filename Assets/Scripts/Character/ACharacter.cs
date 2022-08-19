@@ -19,6 +19,8 @@ namespace MagicalGirlJam.Character
         private int _dodgeLayer;
         private int _baseLayer;
 
+        public CharacterUI CharaUI { private get; set; }
+
         /// <summary>
         /// Get the forward direction of the player (-1 if left or 1 if right)
         /// </summary>
@@ -31,7 +33,11 @@ namespace MagicalGirlJam.Character
             _jumpRaycastLayer = ~(1 << LayerMask.NameToLayer("Player"));
             _baseLayer = gameObject.layer;
             _dodgeLayer = LayerMask.NameToLayer("PlayerDodge");
+        }
 
+        private void Start()
+        {
+            CharacterManager.Instance.Init(this);
             Init();
         }
 
