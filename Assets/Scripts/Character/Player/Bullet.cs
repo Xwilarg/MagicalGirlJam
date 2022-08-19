@@ -1,6 +1,7 @@
 ﻿using MagicalGirlJam.AI;
 using MagicalGirlJam.Player;
 using MagicalGirlJam.SO;
+using System.Linq;
 using UnityEngine;
 
 namespace MagicalGirlJam.Character
@@ -19,7 +20,7 @@ namespace MagicalGirlJam.Character
                 {
                     charac = collision.collider.GetComponent<Enemy>();
                 }
-                charac.TakeDamage(AttackInfo.Damage);
+                charac.TakeDamage(collision.contacts.First().point, AttackInfo.Damage);
             }
             Destroy(gameObject);
         }

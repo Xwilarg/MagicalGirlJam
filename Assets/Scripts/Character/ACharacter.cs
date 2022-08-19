@@ -70,10 +70,13 @@ namespace MagicalGirlJam.Character
             }
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(Vector2 impactPoint, int damage)
         {
             _damagePercent += damage;
             CharaUI.SetDamage(_damagePercent);
+
+            var direction = transform.position.x > impactPoint.x ? 1f : -1f;
+            _rb.AddForce(new Vector2(direction, direction / 5f).normalized * 50f, ForceMode2D.Impulse);
         }
 
         /// <summary>
