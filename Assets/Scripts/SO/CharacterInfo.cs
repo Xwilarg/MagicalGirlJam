@@ -2,8 +2,8 @@
 
 namespace MagicalGirlJam.SO
 {
-    [CreateAssetMenu(menuName = "ScriptableObject/PlayerInfo", fileName = "PlayerInfo")]
-    public class PlayerInfo : ScriptableObject
+    [CreateAssetMenu(menuName = "ScriptableObject/CharacterInfo", fileName = "CharacterInfo")]
+    public class CharacterInfo : ScriptableObject
     {
         public float Speed;
 
