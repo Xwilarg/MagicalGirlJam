@@ -12,8 +12,18 @@ namespace MagicalGirlJam.Character
 
         private Rigidbody2D _rb;
 
+        /// <summary>
+        /// Is the character able to do anything
+        /// </summary>
         private bool _canMove = true;
+        /// <summary>
+        /// Can the dash be used
+        /// </summary>
         private bool _canUseDash = true;
+        /// <summary>
+        /// When true, the character is considered as flying
+        /// </summary>
+        private bool _isFlyingOverride;
 
         private int _jumpRaycastLayer;
         private int _dodgeLayer;
@@ -76,7 +86,9 @@ namespace MagicalGirlJam.Character
             CharaUI.SetDamage(_damagePercent);
 
             var direction = transform.position.x > impactPoint.x ? 1f : -1f;
-            _rb.AddForce(new Vector2(direction, direction / 5f).normalized * 50f, ForceMode2D.Impulse);
+            _rb.AddForce(new Vector2(direction, 1.5f).normalized * 5f * (_damagePercent / 100f), ForceMode2D.Impulse);
+
+            StartCoroutine(TakeHit());
         }
 
         /// <summary>
@@ -94,10 +106,21 @@ namespace MagicalGirlJam.Character
             _canUseDash = true;
         }
 
+        private IEnumerator TakeHit()
+        {
+            _isFlyingOverride = true;
+            yield return new WaitForSeconds(.5f);
+            _isFlyingOverride = false;
+        }
+
         private bool IsOnFloor
         {
             get
             {
+                if (_isFlyingOverride)
+                {
+                    return false;
+                }
                 var hit = Physics2D.Raycast(transform.position, Vector2.down, _info.JumpRaycastHeight, _jumpRaycastLayer);
                 return hit.collider != null;
             }
