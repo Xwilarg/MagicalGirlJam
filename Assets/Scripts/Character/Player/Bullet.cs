@@ -1,5 +1,4 @@
-﻿using MagicalGirlJam.Enemy;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace MagicalGirlJam.Player
 {
@@ -7,9 +6,9 @@ namespace MagicalGirlJam.Player
     {
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (collision.collider.CompareTag("Enemy"))
+            if (collision.collider.CompareTag("Player"))
             {
-                collision.collider.GetComponent<AEnemy>().TakeDamage(1);
+                Debug.Log("Hit registered");
             }
             Destroy(gameObject);
         }

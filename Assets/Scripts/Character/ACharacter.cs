@@ -24,7 +24,11 @@ namespace MagicalGirlJam.Character
         {
             _rb = GetComponent<Rigidbody2D>();
             _jumpRaycastLayer = ~(1 << LayerMask.NameToLayer("Player"));
+            Init();
         }
+
+        protected virtual void Init()
+        { }
 
         private void FixedUpdate()
         {
