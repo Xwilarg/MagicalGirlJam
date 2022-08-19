@@ -16,6 +16,8 @@ namespace MagicalGirlJam.Character
         private bool _canUseDash = true;
 
         private int _jumpRaycastLayer;
+        private int _dodgeLayer;
+        private int _baseLayer;
 
         private float ForwardDirection
             => (XMov < 0f || XMov == 0f && _rb.velocity.x < 0f) ? -1f : 1f;
@@ -24,6 +26,9 @@ namespace MagicalGirlJam.Character
         {
             _rb = GetComponent<Rigidbody2D>();
             _jumpRaycastLayer = ~(1 << LayerMask.NameToLayer("Player"));
+            _baseLayer = gameObject.layer;
+            _dodgeLayer = LayerMask.NameToLayer("PlayerDodge");
+
             Init();
         }
 
@@ -64,7 +69,7 @@ namespace MagicalGirlJam.Character
         {
             if (_canMove)
             {
-                var go = Instantiate(_info.BulletPrefab, transform.position, Quaternion.identity);
+                var go = Instantiate(_info.BulletPrefab, transform.position + Vector3.right * ForwardDirection, Quaternion.identity);
                 go.GetComponent<Rigidbody2D>().AddForce(Vector2.right * _info.BulletForce * ForwardDirection, ForceMode2D.Impulse);
                 Destroy(go, 10f);
             }
@@ -74,8 +79,10 @@ namespace MagicalGirlJam.Character
         {
             _canMove = false;
             _canUseDash = false;
+            gameObject.layer = _dodgeLayer;
             yield return new WaitForSeconds(_info.DashDuration);
             _canMove = true;
+            gameObject.layer = _baseLayer;
             yield return new WaitForSeconds(_info.DashReloadTime);
             _canUseDash = true;
         }
