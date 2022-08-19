@@ -19,6 +19,8 @@ namespace MagicalGirlJam.Character
         private int _dodgeLayer;
         private int _baseLayer;
 
+        private int _damagePercent;
+
         public CharacterUI CharaUI { private get; set; }
 
         /// <summary>
@@ -66,6 +68,12 @@ namespace MagicalGirlJam.Character
                     _rb.velocity = new Vector2(curr, _rb.velocity.y);
                 }
             }
+        }
+
+        public void TakeDamage(int damage)
+        {
+            _damagePercent += damage;
+            CharaUI.SetDamage(_damagePercent);
         }
 
         /// <summary>
@@ -124,6 +132,7 @@ namespace MagicalGirlJam.Character
             {
                 var go = Instantiate(_info.BulletPrefab, transform.position + Vector3.right * ForwardDirection, Quaternion.identity);
                 go.GetComponent<Rigidbody2D>().AddForce(Vector2.right * _info.BulletForce * ForwardDirection, ForceMode2D.Impulse);
+                go.GetComponent<Bullet>().AttackInfo = _info.MainAttack;
                 Destroy(go, 10f);
             }
         }

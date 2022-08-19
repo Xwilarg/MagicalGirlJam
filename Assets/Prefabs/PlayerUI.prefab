@@ -227,7 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _name: {fileID: 9180907572905732541}
-  damageIndictor: {fileID: 9180907573992227612}
+  _damageIndictor: {fileID: 9180907573992227612}
 --- !u!1 &9180907573992227614
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,8 +303,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278224640
-  m_fontColor: {r: 0, g: 0.5283019, b: 0, a: 1}
+    rgba: 4278255360
+  m_fontColor: {r: 0, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
